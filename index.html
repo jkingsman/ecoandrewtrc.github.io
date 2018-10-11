@@ -66,12 +66,35 @@
   map.on('click', function(e) {
     mapReset();
     
-   var popup = new mapboxgl.Popup({closeOnClick: True})
-    .setLngLat([-96, 37.8])
-    .setHTML('<h1>Hello World!</h1>')
-    .addTo(map);
-</script>
+    // Add pop-up
+    var features = map.queryRenderedFeatures(e.point, {
+        layers: ['entries'] // replace this with the name of the layer
+      });
+      if (!features.length) {
+        return;
+      }
+      var feature = features[0];
+      var popup = new mapboxgl.Popup({ offset: [0, -15] })
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML('<h3>' + Name + '</h3>')
+        .setLngLat(feature.geometry.coordinates)
+        .addTo(map);
+      });
       
+          // Add pop-up
+    var features = map.queryRenderedFeatures(e.point, {
+        layers: ['opendivesitespois'] // replace this with the name of the layer
+      });
+      if (!features.length) {
+        return;
+      }
+      var feature = features[0];
+      var popup = new mapboxgl.Popup({ offset: [0, -15] })
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML('<h3>' + Name + '</h3>')
+        .setLngLat(feature.geometry.coordinates)
+        .addTo(map);
+      });
       
       // Toggle styles
     var layerList = document.getElementById('menu');
