@@ -75,6 +75,9 @@
         return;
       }
       var feature = features[0];
+      
+      console.log(feature);
+    
       var popup = new mapboxgl.Popup({ offset: [0, -15] })
         .setLngLat(feature.geometry.coordinates)
         .setHTML('<h3>' + Name + '</h3>')
